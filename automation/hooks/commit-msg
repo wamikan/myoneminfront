@@ -1,0 +1,8 @@
+#!/bin/bash
+# 参考 https://none-if-none-else-none.hatenablog.com/entry/2020/11/14/000000
+issue_num=`git branch --show-current | cut -d/ -f2 | tr -d "\n" | sed -r "s:^.*(#[0-9]+).*$:\1:"`
+
+if [[ $issue_num =~ \#[0-9]* ]]; then
+    msg=$(tr -d "\n" < $1)
+    echo -n $msg $issue_num > $1
+fi
